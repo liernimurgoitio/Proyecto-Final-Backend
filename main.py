@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from decouple import Config, Csv  # para sacar los datos de la variable de entorno
+config = Config(Csv())
+
+
 from routes.article import article
 from routes.publication import publication
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,6 +13,7 @@ from decouple import config  # para sacar los datos de la variable de entorno
 print(config('FRONTEND_URL'))
 
 app = FastAPI()
+
 origins = [
     # se pone la url del fronted para que se puedan acceder a las peticiones de distintos origenes
     config('FRONTEND_URL'),
