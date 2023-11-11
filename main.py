@@ -22,7 +22,7 @@ origins = [
 app.add_middleware(  # esto es para que las peticiones de distintos origenes sean permitidas
     CORSMiddleware,  # se usa la libreria cors
     # se pone * para que se permitan todas las peticiones de cualquier origen
-    allow_origins=origins,
+    allow_origins=['*'],
     # se pone True para que el usuario pueda utilizar las credenciales
     allow_credentials=True,
     # se pone * para que se permitan todas las peticiones (post, get, delete, put)
