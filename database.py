@@ -1,8 +1,8 @@
+
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
 from models.article import Article
 from models.publication import Publication
-
 
 # Conexion a la base de datos
 client = AsyncIOMotorClient('mongodb://localhost:27017')
@@ -10,17 +10,6 @@ database = client['my_blog']  # Conexion a la base de datos 'my_blog'
 collection_articles = database['articles'] # Conexion a la coleccion 'articles'
 collection_publications = database['publications'] # Conexion a la coleccion 'publications'
 collection_users = database['users'] # Conexion a la coleccion 'users'
-
-
-# Funciones a implementar para 'users'
-async def verify_credentials(username: str, password: str) -> bool:
-    # Buscar el usuario en la colección por su nombre de usuario
-    user = await collection_users.find_one({"username": username})
-    # Verificar si se encontró el usuario y si la contraseña coincide
-    if user and user["password"] == password:
-        return True
-
-    return False
 
 # Funciones a implementar para 'articles'
 
@@ -130,4 +119,7 @@ async def delete_publication(id: str):  # Funcion para eliminar publicacion
     # Eliminamos publicacion en la coleccion 'publications' por su id
     await collection_publications.delete_one({'_id': ObjectId(id)})
     return True  # Devolvemos True para indicar que se elimino la publicacion correctamente
+
+
+
 
